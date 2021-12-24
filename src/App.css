@@ -1,0 +1,102 @@
+.wrap{
+    width: 100%;
+}
+.wrap .main-wrap {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+.side{
+    width: 50%;
+}
+.left-section{
+    background: linear-gradient(91.71deg, #EBA232 -2.16%, #F77D00 71.31%, #EA5413 105.25%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    justify-content: center;
+}
+.right-section {
+    padding: 15px;
+    flex: auto;
+}
+.loginForm{
+    margin-top: 10%;
+    text-align:center;
+}
+.loginForm h2{
+    text-align: center;
+    margin: 30px;
+}
+    
+.login_Nickname {
+     width: 100%;
+     border:none;
+     outline:none;
+     color: #939393;
+     font-size:16px;
+     height:25px;
+     background: none;
+}
+.login_email{
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #939393;
+    font-size:16px;
+    height:25px;
+    background: none;
+}
+.idForm{
+    border-bottom: 2px solid #939393;
+    margin: 30px;
+    padding: 10px 10px;
+}
+.pwForm {
+    border-bottom: 2px solid #939393;
+    margin: 30px;
+    padding: 10px 10px;
+}
+.login_inputID{
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #939393;
+    font-size:16px;
+    height:25px;
+    background: none;
+}
+.login_inputPW{
+        width: 100%;
+        border:none;
+        outline:none;
+        color: #939393;
+        font-size:16px;
+        height:25px;
+        background: none;
+}
+.log_btn{
+    position:relative;
+    margin-bottom: 10px;
+    width:361px;
+    height:64px;
+    background: #EA5514;
+    background-position: left;
+    background-size: 200%;
+    color:white;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    font-size: 2rem;
+    border-radius: 50px;
+    transition: 0.4s;
+    display:inline;
+}
+.makeacc h3{
+     text-decoration: underline;
+}
+.authform_wrap{
+    margin-top: 50%;
+}
