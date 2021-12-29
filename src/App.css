@@ -23,7 +23,11 @@
     flex: auto;
 }
 .loginForm{
-    margin-top: 10%;
+    margin: 0 auto;
+    width: 50%;
+    margin-top: 15%;
+    padding: 30px, 20px;
+    background-color:white;
     text-align:center;
 }
 .loginForm h2{
@@ -78,24 +82,24 @@
         background: none;
 }
 .log_btn{
-    position:relative;
     margin-bottom: 10px;
-    width:361px;
+    width:90%;
     height:64px;
     background: #EA5514;
-    background-position: left;
-    background-size: 200%;
     color:white;
     font-weight: bold;
     border:none;
     cursor:pointer;
-    font-size: 2rem;
+    font-size: 1.6rem;
     border-radius: 50px;
     transition: 0.4s;
     display:inline;
 }
 .makeacc h3{
      text-decoration: underline;
+}
+.makeacc{
+    cursor:pointer;
 }
 .authform_wrap{
     margin-top: 50%;
