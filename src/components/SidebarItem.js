@@ -1,9 +1,11 @@
 import React from "react";
-import "../Sidebar.css"
-const SidebarItem = ({menu}) =>{
+import { Link } from "react-router-dom";
+const SidebarItem = ({menu,index}) =>{
     return(
         <div className="sidebar-item">
-            <p>{menu.name}</p>
+            <ul>
+                <li><Link to={menu.path} key={index}><a><span>{menu.name}</span></a></Link></li>
+            </ul>
         </div>
     )
 }

@@ -1,10 +1,13 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
+import Footer from "../components/Footer"
+
 const Profile = () =>{
     return(
         <>
-        <Sidebar/>
+        <Header/>
         <>Profile</>
+        <Footer/>
         </>
     )
 }
