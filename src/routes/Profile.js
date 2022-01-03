@@ -1,14 +1,12 @@
 import React from "react";
 import Header from "../components/Header";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
 
-const Profile = () =>{
-    return(
-        <>
-        <Header/>
-        <>Profile</>
-        <Footer/>
-        </>
-    )
-}
+const Profile = () => {
+  return (
+    <>
+      <Header />
+    </>
+  );
+};
 export default Profile;
