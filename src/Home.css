@@ -60,7 +60,7 @@
     margin: auto auto 23%;
 }
 .NavBar-wrap-header-logo-img {
-    height: 20px;
+    height: 50px;
     user-select: none;
     -webkit-user-drag: none;
 }
@@ -98,10 +98,31 @@
         align-content: center;
 }
 .PageTemplate-contents{
-        padding-top: 100px;
+        padding-top: 120px;
         padding-bottom: 210px;
         min-width: 1200px;
         max-width: 1200px;
         min-height: 930px;
         margin: 0 auto;
+}
+.content-card{
+    width: 512px;
+    height: 250px;
+    left: 192px;
+    top: 243px;
+    border: 1px solid #C7C7C7;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+.content-card-right{
+    float: right;
+    width: 512px;
+    height: 250px;
+    left: 192px;
+    top: 243px;
+    border: 1px solid #C7C7C7;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-bottom: 2rem;
 }
