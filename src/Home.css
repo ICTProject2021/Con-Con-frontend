@@ -105,15 +105,25 @@
         min-height: 930px;
         margin: 0 auto;
 }
-.content-card{
-    width: 512px;
+.content-card1{
+    float: left;
+    width: 350px;
+    height: 250px;
+    left: 192px;
+    top: 243px;
+    border: 1px solid #C7C7C7;                                                    
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.content-card2  {
+    float: right;
+    width: 350px;
     height: 250px;
     left: 192px;
     top: 243px;
     border: 1px solid #C7C7C7;
     box-sizing: border-box;
     border-radius: 10px;
-    margin-bottom: 2rem;
 }
 .content-card-right{
     float: right;
@@ -124,5 +134,41 @@
     border: 1px solid #C7C7C7;
     box-sizing: border-box;
     border-radius: 10px;
-    margin-bottom: 2rem;
+}
+.HomeTemplate-content{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    }
+.HomeTemplate-content-left{
+    width: 60%;
+}
+.HomeTemplate-content-right{
+    width: 36%;
+}
+.HomeTemplate-content-left-top{
+    width: 100%;
+    height: 320px;
+}
+.HomeTemplate-content-left-mid{
+    width: 100%;
+    height: 320px;
+}
+.profilebase{
+      width: 100%;
+      height: 580px;
+      border: 1px solid #C7C7C7;
+      box-sizing: border-box;
+      border-radius: 10px;
+}
+.HomeTemplate-content-right-top{
+    width: 100%;
+    height: 320px;
+}
+.HomeTemplate-content-right-mid {
+    width: 100%;
+    height: 320px;
 }
