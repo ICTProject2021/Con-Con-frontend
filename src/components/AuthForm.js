@@ -1,5 +1,6 @@
 //로그인 폼
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 const AuthForm = () => {
   const [loginid, setLoginId] = useState("");
   const [loginpw, setLoginPw] = useState("");
@@ -26,9 +27,57 @@ const AuthForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (newAccount) {
-      //회원가입
+      axios
+        .post(
+          "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/signup",
+          {
+            id: loginid,
+            pw: loginpw,
+            phonenum: email,
+            nickname: nickname,
+          }
+        )
+        //성공시 then 실행
+        .then(function (response) {
+          console.log(response);
+        })
+        //실패 시 catch 실행
+        .catch(function (error) {
+          alert("오류가 발생했습니다");
+          console.log(error);
+          setLoginId("");
+          setLoginPw("");
+          setNickname("");
+          setEmail("");
+        });
     } else {
-      //로그인
+      axios
+        .post(
+          "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/signin",
+          {
+            id: loginid,
+            pw: loginpw,
+          }
+        )
+        //성공시 then 실행
+        .then(function (response) {
+          console.log(loginid);
+          console.log(loginpw);
+          console.log(response);
+          let ok = response.data.msg;
+          let token = response.data.data;
+          if (ok == "로그인 성공") {
+            sessionStorage.setItem("token", token);
+            alert("로그인 성공");
+          } else {
+            alert("아이디와 비밀번호가 일치하지 않습니다.");
+          }
+        })
+        //실패 시 catch 실행
+        .catch(function (error) {
+          alert("아이디와 비밀번호가 일치하지 않습니다");
+          console.log(error);
+        });
     }
   };
   return (
@@ -61,7 +110,7 @@ const AuthForm = () => {
           <div className="idForm">
             <input
               name="nickname"
-              type="password"
+              type="text"
               className="login_Nickname"
               required
               placeholder="nickname"
@@ -72,9 +121,9 @@ const AuthForm = () => {
           <div className="idForm">
             <input
               name="email"
-              type="email"
+              type="text"
               className="login_email"
-              placeholder="email"
+              placeholder="phonenum"
               required
               value={email}
               onChange={onChange}
