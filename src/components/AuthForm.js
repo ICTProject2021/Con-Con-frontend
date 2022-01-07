@@ -69,6 +69,7 @@ const AuthForm = () => {
           if (ok == "로그인 성공") {
             sessionStorage.setItem("token", token);
             alert("로그인 성공");
+            window.location.replace("/");
           } else {
             alert("아이디와 비밀번호가 일치하지 않습니다.");
           }

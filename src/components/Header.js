@@ -3,10 +3,15 @@ import { Link } from "react-router-dom";
 import SidebarItem from "./SidebarItem";
 import logo from "../img/logo.png";
 const Header = () => {
+  const logout = () => {
+    alert("로그아웃 하시겠습니까?");
+    sessionStorage.removeItem("token");
+    window.location.replace("/");
+  };
   const menus = [
-    { name: "홈", path: "/Home" },
+    { name: "홈", path: "/" },
     { name: "프로필", path: "/Profile" },
-    { name: "정보", path: "/Home" },
+    { name: "정보", path: "/" },
   ];
   return (
     <div className="PageTemplate-header">
@@ -20,10 +25,11 @@ const Header = () => {
           <nav className="NavBar-wrap-nav">
             <ul className="NavBar-wrap-nav-wrap">
               {menus.map((menu, index) => {
-                return <SidebarItem menu={menu} index={index}></SidebarItem>;
+                return <SidebarItem menu={menu} key={index}></SidebarItem>;
               })}
             </ul>
           </nav>
+          <button onClick={logout}>logout</button>
         </div>
       </div>
     </div>

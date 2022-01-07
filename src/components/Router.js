@@ -16,13 +16,12 @@ const AppRouter = ({ islog }) => {
       <Switch>
         {islog ? (
           <>
-            <Route exct path="/">
-              <Home />
-            </Route>
             <Route exct path="/profile">
               <Profile />
             </Route>
-            <Redirect from="*" to="/"></Redirect>
+            <Route exct path="/">
+              <Home />
+            </Route>
           </>
         ) : (
           <>

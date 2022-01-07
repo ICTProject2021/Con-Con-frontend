@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 const SidebarItem = ({ menu, index }) => {
   return (
     <li className="NavBar-wrap-nav-wrap-child">
-      <Link to={menu.path} key={index}>
-        <a className="NavBar-wrap-nav-wrap-child-link">
-          <span>{menu.name}</span>
-        </a>
-      </Link>
+      <a>
+        <Link to={menu.path} key={index}>
+          <span className="NavBar-wrap-nav-wrap-child-link">{menu.name}</span>
+        </Link>
+      </a>
     </li>
   );
 };
