@@ -9,6 +9,7 @@ import {
 import Auth from "../routes/Auth";
 import Home from "../routes/Home";
 import Profile from "../routes/Profile";
+import Info from "../routes/Info";
 const AppRouter = ({ islog }) => {
   console.log(islog);
   return (
@@ -16,11 +17,14 @@ const AppRouter = ({ islog }) => {
       <Switch>
         {islog ? (
           <>
-            <Route exct path="/profile">
-              <Profile />
-            </Route>
-            <Route exct path="/">
+            <Route exact path="/">
               <Home />
+            </Route>
+            <Route path="/info">
+              <Info />
+            </Route>
+            <Route path="/profile">
+              <Profile />
             </Route>
           </>
         ) : (
@@ -28,7 +32,7 @@ const AppRouter = ({ islog }) => {
             <Route exct path="/">
               <Auth />
             </Route>
-            <Redirect from="*" to="/"></Redirect>
+            {/* <Redirect from="*" to="/"></Redirect> */}
           </>
         )}
       </Switch>

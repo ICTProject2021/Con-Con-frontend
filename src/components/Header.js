@@ -10,8 +10,8 @@ const Header = () => {
   };
   const menus = [
     { name: "홈", path: "/" },
-    { name: "프로필", path: "/Profile" },
-    { name: "정보", path: "/" },
+    { name: "프로필", path: "/profile" },
+    { name: "정보", path: "/info" },
   ];
   return (
     <div className="PageTemplate-header">
