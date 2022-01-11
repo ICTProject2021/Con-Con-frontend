@@ -1,11 +1,15 @@
 import axios from "axios";
 import React, { useEffect } from "react";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import logo from "../img/logo.png";
+import Leftcard from "./ContentCard/LeftCard";
+import Profilebase from "./ContentCard/Profilebase";
+import Rightcard from "./ContentCard/RightCard";
 const Content = () => {
   const [nickname, setNickname] = useState("");
   const [cash, setCash] = useState("");
   const [profile, setProfile] = useState("logo");
+  const url = "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000";
   useEffect(() => {
     axios
       .get(
@@ -24,6 +28,20 @@ const Content = () => {
         alert("오류가 발생했습니다");
         console.log(error);
       });
+    axios
+      .get(
+        "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/contest",
+        { headers: { Authorization: sessionStorage.getItem("token") } }
+      )
+      //성공시 then 실행
+      .then(function (response) {
+        console.log(response);
+      })
+      //실패 시 catch 실행
+      .catch(function (error) {
+        alert("오류가 발생했습니다");
+        console.log(error);
+      });
   }, []);
   return (
     <div className="PageTemplate-contents">
@@ -32,47 +50,17 @@ const Content = () => {
         <div className="HomeTemplate-content">
           <div className="HomeTemplate-content-left">
             <div className="HomeTemplate-content-left-top">
-              <div className="content-card1">
-                <img src={logo}></img>
-                <p>user</p>
-                <h2>코딩테스트</h2>
-                <p>마감n일전</p>
-                <button className="part_but">대회 신청하기</button>
-              </div>
-              <div className="content-card2">
-                <img src={logo}></img>
-                <p>user</p>
-                <h2>코딩테스트</h2>
-                <p>마감n일전</p>
-                <button className="part_but">대회 신청하기</button>
-              </div>
+              <Leftcard></Leftcard>
+              <Rightcard />
             </div>
             <div className="HomeTemplate-content-left-mid">
-              <div className="content-card1">
-                <img src={logo}></img>
-                <p>user</p>
-                <h2>코딩테스트</h2>
-                <p>마감n일전</p>
-                <button className="part_but">대회 신청하기</button>
-              </div>
-              <div className="content-card2">
-                <img src={logo}></img>
-                <p>user</p>
-                <h2>코딩테스트</h2>
-                <p>마감n일전</p>
-                <button className="part_but">대회 신청하기</button>
-              </div>
+              <Leftcard></Leftcard>
+              <Rightcard />
             </div>
           </div>
           <div className="HomeTemplate-content-right">
             <div className="HomeTemplate-content-right-top">
-              <div className="profilebase">
-                <img src={profile}></img>
-                <h2>{nickname}님 환영합니다</h2>
-                <p>잔액:{cash}</p>
-                <button className="infochange_but">정보수정</button>
-                <button className="logout_but">로그아웃</button>
-              </div>
+              <Profilebase nickname={nickname} cash={cash} />
             </div>
             <div className="HomeTemplate-content-right-mid"></div>
           </div>

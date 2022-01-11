@@ -40,6 +40,10 @@ const AuthForm = () => {
         //성공시 then 실행
         .then(function (response) {
           console.log(response);
+          let token = response.data.data;
+          sessionStorage.setItem("token", token);
+          alert("회원가입 성공");
+          window.location.replace("/");
         })
         //실패 시 catch 실행
         .catch(function (error) {
