@@ -6,6 +6,7 @@ const Profile = () => {
   return (
     <>
       <Header />
+      <Footer />
     </>
   );
 };

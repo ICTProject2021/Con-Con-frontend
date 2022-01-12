@@ -8,6 +8,7 @@ const Home = () => {
     <div className="PageTemplate">
       <Header />
       <Content />
+      <Footer />
     </div>
   );
 };

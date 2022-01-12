@@ -6,7 +6,7 @@ const Footer = () => {
   };
   return (
     <div className="PageTemplate-footer">
-      <div className="Footer"></div>
+      <div className="Footer">concon</div>
     </div>
   );
 };

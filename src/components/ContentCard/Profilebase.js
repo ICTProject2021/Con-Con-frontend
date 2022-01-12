@@ -18,7 +18,7 @@ const Profilebase = ({ nickname, cash }) => {
       </div>
       <br></br>
       <>
-        <Button variant="primary" onClick={handleShow}>
+        <Button variant="warning" onClick={handleShow}>
           충전하기
         </Button>
 
