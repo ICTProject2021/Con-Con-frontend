@@ -18,7 +18,6 @@ const Content = () => {
       )
       //성공시 then 실행
       .then(function (response) {
-        console.log(response);
         setNickname(response.data.data.nickname);
         setCash(response.data.data.cash);
         setProfile(response.data.data.profile);
@@ -35,7 +34,7 @@ const Content = () => {
       )
       //성공시 then 실행
       .then(function (response) {
-        console.log(response);
+        console.log(response.data.data);
       })
       //실패 시 catch 실행
       .catch(function (error) {
