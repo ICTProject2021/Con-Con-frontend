@@ -1,8 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 const Chargemodal = () => {
+  const moneyInput = useRef();
+  const options = [
+    {
+      label: "선택",
+      value: "choice",
+    },
+    {
+      label: "1000",
+      value: "cheonwon",
+    },
+    {
+      label: "5000",
+      value: "cheonwon",
+    },
+    {
+      label: "10000",
+      value: "cheonwon",
+    },
+    {
+      label: "20000",
+      value: "cheonwon",
+    },
+    {
+      label: "50000",
+      value: "cheonwon",
+    },
+  ];
   const [show, setShow] = useState(false);
   const [charge, setCharge] = useState("");
   const handleClose = () => setShow(false);
@@ -57,10 +84,18 @@ const Chargemodal = () => {
                 name="charge"
                 value={charge}
                 onChange={onChange}
+                className="form-control"
               ></input>
             </div>
+            선택하기
           </form>
+          <select name="language" className="form-control">
+            {options.map((option) => (
+              <option value={option.value}>{option.label}</option>
+            ))}
+          </select>
         </Modal.Body>
+
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             닫기

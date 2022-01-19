@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import logo from "../img/logo.png";
 import Leftcard from "./ContentCard/LeftCard";
 import Profilebase from "./ContentCard/Profilebase";
 import Rightcard from "./ContentCard/RightCard";
@@ -9,6 +8,7 @@ const Content = () => {
   const [nickname, setNickname] = useState("");
   const [cash, setCash] = useState("");
   const [profile, setProfile] = useState("logo");
+  const [title, setTitle] = useState("");
   const url = "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000";
   useEffect(() => {
     axios
@@ -34,7 +34,7 @@ const Content = () => {
       )
       //성공시 then 실행
       .then(function (response) {
-        console.log(response.data.data);
+        console.log(response.data.data[0].title);
       })
       //실패 시 catch 실행
       .catch(function (error) {
@@ -59,7 +59,7 @@ const Content = () => {
           </div>
           <div className="HomeTemplate-content-right">
             <div className="HomeTemplate-content-right-top">
-              <Profilebase nickname={nickname} cash={cash} />
+              <Profilebase nickname={nickname} cash={cash} profile={profile} />
             </div>
             <div className="HomeTemplate-content-right-mid"></div>
           </div>
