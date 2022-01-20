@@ -12,10 +12,9 @@ const Content = () => {
   const url = "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000";
   useEffect(() => {
     axios
-      .get(
-        "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/profile",
-        { headers: { Authorization: sessionStorage.getItem("token") } }
-      )
+      .get(url + "/profile", {
+        headers: { Authorization: sessionStorage.getItem("token") },
+      })
       //성공시 then 실행
       .then(function (response) {
         setNickname(response.data.data.nickname);

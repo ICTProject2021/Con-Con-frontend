@@ -5,22 +5,115 @@ import { Form } from "react-bootstrap";
 import { FloatingLabel } from "react-bootstrap";
 import axios from "axios";
 const Conmkmodal = () => {
+  const onChangeimg = (e) => {
+    e.preventDefault();
+    if (e.target.files) {
+      const uploadFile = e.target.files[0];
+      const formData = new FormData();
+      formData.append("files", uploadFile);
+    }
+  };
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [title, setTitle] = useState("");
   const [coninfo, setConinfo] = useState("");
+  const [first, setFirst] = useState();
+  const [second, setSecond] = useState();
   const startDate = useRef();
+  const dueDate = useRef();
+  const onSubmit = (e) => {
+    let startdate = startDate.current.value;
+    e.preventDefault();
+    axios
+      .post(
+        "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/contest",
+        {
+          title: title,
+          content: coninfo,
+          startDate: startdate.replace("-", "/"),
+          dueDate: dueDate.current.value,
+          prize: [
+            {
+              rank: 1,
+              price: parseInt(first),
+            },
+            {
+              rank: 2,
+              price: parseInt(second),
+            },
+          ],
+        },
+        {
+          headers: {
+            Authorization: sessionStorage.getItem("token"),
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      //성공시 then 실행
+      .then(function (response) {
+        console.log(response);
+      })
+      //실패 시 catch 실행
+      .catch(function (error) {
+        alert("오류가 발생했습니다");
+        console.log(error);
+      });
+  };
   const onChange = (e) => {
     const {
       target: { name, value },
     } = e;
     if (name === "title") {
       setTitle(value);
-      console.log(startDate.current.value);
     } else if (name === "coninfo") {
       setConinfo(value);
+    } else if (name === "firstmon") {
+      setFirst(value);
+    } else if (name === "secmon") {
+      setSecond(value);
     }
+  };
+  const onMakecon = () => {
+    let startdate = startDate.current.value;
+    let duedate = dueDate.current.value;
+    axios
+      .post(
+        "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/contest",
+        {
+          data: "",
+          title: title,
+          content: coninfo,
+          startdate: startdate.replace(/-/gi, "/"),
+          duedate: duedate.replace(/-/gi, "/"),
+          prize: [
+            {
+              rank: 1,
+              price: parseInt(first),
+            },
+            {
+              rank: 2,
+              price: parseInt(second),
+            },
+          ],
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      )
+      //성공시 then 실행
+      .then(function (response) {
+        console.log(response);
+      })
+      //실패 시 catch 실행
+      .catch(function (error) {
+        alert("오류가 발생했습니다");
+        console.log(error);
+      });
   };
   return (
     <>
@@ -32,7 +125,7 @@ const Conmkmodal = () => {
           <Modal.Title>대회 등록</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={onSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>대회 제목</Form.Label>
               <Form.Control
@@ -66,18 +159,29 @@ const Conmkmodal = () => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="startdate">
               <Form.Label>대회종료일(duedate)</Form.Label>
-              <Form.Control type="date" placeholder="Password" />
+              <Form.Control type="date" placeholder="Password" ref={dueDate} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="firstmon">
               <Form.Label>1등상금</Form.Label>
-              <Form.Control type="text" placeholder="Password" />
+              <Form.Control
+                name="firstmon"
+                type="text"
+                placeholder="prizeone"
+                onChange={onChange}
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="secmon">
               <Form.Label>2등상금</Form.Label>
-              <Form.Control type="text" placeholder="Password" />
+              <Form.Control
+                name="secmon"
+                type="text"
+                placeholder="prizetwo"
+                onChange={onChange}
+              />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
+            <Form.Group controlId="formFile" className="mb-3">
+              <Form.Label>사진</Form.Label>
+              <Form.Control type="file" onChange={onChangeimg} />
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -85,7 +189,9 @@ const Conmkmodal = () => {
           <Button variant="secondary" onClick={handleClose}>
             닫기
           </Button>
-          <Button variant="primary">대회 생성</Button>
+          <Button variant="primary" onClick={onMakecon}>
+            대회 생성
+          </Button>
         </Modal.Footer>
       </Modal>
     </>
