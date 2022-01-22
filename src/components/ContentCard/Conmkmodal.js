@@ -5,62 +5,17 @@ import { Form } from "react-bootstrap";
 import { FloatingLabel } from "react-bootstrap";
 import axios from "axios";
 const Conmkmodal = () => {
-  const onChangeimg = (e) => {
-    e.preventDefault();
-    if (e.target.files) {
-      const uploadFile = e.target.files[0];
-      const formData = new FormData();
-      formData.append("files", uploadFile);
-    }
-  };
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [title, setTitle] = useState("");
   const [coninfo, setConinfo] = useState("");
   const [first, setFirst] = useState();
-  const [second, setSecond] = useState();
+  const [second, setSecond] = useState("");
+  const [uploadimg, setUploadimg] = useState("");
   const startDate = useRef();
   const dueDate = useRef();
-  const onSubmit = (e) => {
-    let startdate = startDate.current.value;
-    e.preventDefault();
-    axios
-      .post(
-        "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/contest",
-        {
-          title: title,
-          content: coninfo,
-          startDate: startdate.replace("-", "/"),
-          dueDate: dueDate.current.value,
-          prize: [
-            {
-              rank: 1,
-              price: parseInt(first),
-            },
-            {
-              rank: 2,
-              price: parseInt(second),
-            },
-          ],
-        },
-        {
-          headers: {
-            Authorization: sessionStorage.getItem("token"),
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
-      //성공시 then 실행
-      .then(function (response) {
-        console.log(response);
-      })
-      //실패 시 catch 실행
-      .catch(function (error) {
-        alert("오류가 발생했습니다");
-        console.log(error);
-      });
-  };
+
   const onChange = (e) => {
     const {
       target: { name, value },
@@ -75,19 +30,37 @@ const Conmkmodal = () => {
       setSecond(value);
     }
   };
+  const onChangeimg = (e) => {
+    e.preventDefault();
+    if (e.target.files) {
+      const uploadFile = e.target.files[0];
+      setUploadimg(uploadFile);
+    }
+  };
   const onMakecon = () => {
     let startdate = startDate.current.value;
     let duedate = dueDate.current.value;
-    axios
-      .post(
-        "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/contest",
-        {
-          data: "",
-          title: title,
-          content: coninfo,
-          startdate: startdate.replace(/-/gi, "/"),
-          duedate: duedate.replace(/-/gi, "/"),
-          prize: [
+    let prizedata = [
+      {
+        rank: 1,
+        price: parseInt(first),
+      },
+      {
+        rank: 2,
+        price: parseInt(second),
+      },
+    ];
+    const formData = new FormData();
+    formData.append("attachment", uploadimg);
+    formData.append("title", title);
+    formData.append("content", coninfo);
+    formData.append("startdate", startdate.replace(/-/gi, "/"));
+    formData.append("duedate", duedate.replace(/-/gi, "/"));
+    formData.append(
+      "prize",
+      new Blob(
+        [
+          JSON.stringify(
             {
               rank: 1,
               price: parseInt(first),
@@ -95,13 +68,23 @@ const Conmkmodal = () => {
             {
               rank: 2,
               price: parseInt(second),
-            },
-          ],
-        },
+            }
+          ),
+        ],
+        { type: "application/json" }
+      )
+    );
+    for (let key of formData.entries()) {
+      console.log(`${key}`);
+    }
+    axios
+      .post(
+        "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/contest",
+        formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: localStorage.getItem("token"),
+            Authorization: sessionStorage.getItem("token"),
           },
         }
       )
@@ -115,6 +98,7 @@ const Conmkmodal = () => {
         console.log(error);
       });
   };
+
   return (
     <>
       <Button variant="secondary" onClick={handleShow}>
@@ -125,7 +109,7 @@ const Conmkmodal = () => {
           <Modal.Title>대회 등록</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={onSubmit}>
+          <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>대회 제목</Form.Label>
               <Form.Control
