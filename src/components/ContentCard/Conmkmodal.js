@@ -40,40 +40,16 @@ const Conmkmodal = () => {
   const onMakecon = () => {
     let startdate = startDate.current.value;
     let duedate = dueDate.current.value;
-    let prizedata = [
-      {
-        rank: 1,
-        price: parseInt(first),
-      },
-      {
-        rank: 2,
-        price: parseInt(second),
-      },
-    ];
     const formData = new FormData();
     formData.append("attachment", uploadimg);
     formData.append("title", title);
     formData.append("content", coninfo);
     formData.append("startdate", startdate.replace(/-/gi, "/"));
     formData.append("duedate", duedate.replace(/-/gi, "/"));
-    formData.append(
-      "prize",
-      new Blob(
-        [
-          JSON.stringify(
-            {
-              rank: 1,
-              price: parseInt(first),
-            },
-            {
-              rank: 2,
-              price: parseInt(second),
-            }
-          ),
-        ],
-        { type: "application/json" }
-      )
-    );
+    formData.append("prize[0][rank]", 1);
+    formData.append("prize[0][price]", parseInt(first));
+    formData.append("prize[1][rank]", 2);
+    formData.append("prize[1][price]", parseInt(second));
     for (let key of formData.entries()) {
       console.log(`${key}`);
     }
