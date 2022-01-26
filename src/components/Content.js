@@ -3,12 +3,11 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Leftcard from "./ContentCard/LeftCard";
 import Profilebase from "./ContentCard/Profilebase";
-import Rightcard from "./ContentCard/RightCard";
 const Content = () => {
   const [nickname, setNickname] = useState("");
   const [cash, setCash] = useState("");
   const [profile, setProfile] = useState("logo");
-  const [title, setTitle] = useState("");
+  const [datas, setData] = useState([]);
   const url = "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000";
   useEffect(() => {
     axios
@@ -33,7 +32,8 @@ const Content = () => {
       )
       //성공시 then 실행
       .then(function (response) {
-        console.log(response.data.data);
+        console.log(response);
+        setData(response.data.data);
       })
       //실패 시 catch 실행
       .catch(function (error) {
@@ -48,12 +48,17 @@ const Content = () => {
         <div className="HomeTemplate-content">
           <div className="HomeTemplate-content-left">
             <div className="HomeTemplate-content-left-top">
-              <Leftcard></Leftcard>
-              <Rightcard />
+              <Leftcard
+                cn={"content-card1"}
+                user={datas[0].host}
+                title={datas[0].title}
+                startdate={datas[0].startdate}
+              />
+              <Leftcard cn={"content-card2"} />
             </div>
             <div className="HomeTemplate-content-left-mid">
-              <Leftcard></Leftcard>
-              <Rightcard />
+              <Leftcard cn={"content-card1"} />
+              <Leftcard cn={"content-card2"} />
             </div>
           </div>
           <div className="HomeTemplate-content-right">

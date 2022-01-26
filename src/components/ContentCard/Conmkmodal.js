@@ -67,6 +67,8 @@ const Conmkmodal = () => {
       //성공시 then 실행
       .then(function (response) {
         console.log(response);
+        alert("대회를 생성하였습니다.");
+        setShow(false);
       })
       //실패 시 catch 실행
       .catch(function (error) {

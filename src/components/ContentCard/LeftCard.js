@@ -1,13 +1,15 @@
 import React from "react";
 import logo from "../../img/logo.png";
-const Leftcard = () => {
+const Leftcard = ({ cn, user, title, startdate }) => {
   return (
-    <div className="content-card1">
+    <div className={cn}>
       <img src={logo}></img>
-      <p>user</p>
-      <h2>코딩테스트</h2>
-      <p>마감n일전</p>
-      <button className="part_but">대회 신청</button>
+      <p>{user}</p>
+      <h2>{title}</h2>
+      <p>
+        {startdate}~{}
+      </p>
+      <button className="part_but">자세히</button>
     </div>
   );
 };
