@@ -9,6 +9,43 @@ const Content = () => {
   const [profile, setProfile] = useState("logo");
   const [datas, setData] = useState([]);
   const url = "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000";
+  const getContestData = async () => {
+    await axios
+      .get(
+        "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/contest",
+        { headers: { Authorization: sessionStorage.getItem("token") } }
+      )
+      //성공시 then 실행
+      .then(function (response) {
+        if (response) {
+          setData(response.data.data);
+        }
+      })
+      //실패 시 catch 실행
+      .catch(function (error) {
+        alert("오류가 발생했습니다");
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/contest",
+          { headers: { Authorization: sessionStorage.getItem("token") } }
+        );
+        if (response) {
+          console.log(response.data.data);
+          const basedata = response.data.data;
+          setData(basedata.slice(0, 6));
+          console.log(datas);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchData();
+  }, []);
   useEffect(() => {
     axios
       .get(url + "/profile", {
@@ -25,22 +62,8 @@ const Content = () => {
         alert("오류가 발생했습니다");
         console.log(error);
       });
-    axios
-      .get(
-        "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/contest",
-        { headers: { Authorization: sessionStorage.getItem("token") } }
-      )
-      //성공시 then 실행
-      .then(function (response) {
-        console.log(response);
-        setData(response.data.data);
-      })
-      //실패 시 catch 실행
-      .catch(function (error) {
-        alert("오류가 발생했습니다");
-        console.log(error);
-      });
   }, []);
+
   return (
     <div className="PageTemplate-contents">
       <div className="HomeTemplate">
@@ -48,24 +71,23 @@ const Content = () => {
         <div className="HomeTemplate-content">
           <div className="HomeTemplate-content-left">
             <div className="HomeTemplate-content-left-top">
-              <Leftcard
-                cn={"content-card1"}
-                user={datas[0].host}
-                title={datas[0].title}
-                startdate={datas[0].startdate}
-              />
-              <Leftcard cn={"content-card2"} />
-            </div>
-            <div className="HomeTemplate-content-left-mid">
-              <Leftcard cn={"content-card1"} />
-              <Leftcard cn={"content-card2"} />
+              {datas.map((data, index) => (
+                <Leftcard
+                  profile={data.profile}
+                  key={index}
+                  cn={"content-card1"}
+                  user={data.host}
+                  title={data.title}
+                  startdate={data.startdate}
+                  duedate={data.duedate}
+                />
+              ))}
             </div>
           </div>
           <div className="HomeTemplate-content-right">
             <div className="HomeTemplate-content-right-top">
               <Profilebase nickname={nickname} cash={cash} profile={profile} />
             </div>
-            <div className="HomeTemplate-content-right-mid"></div>
           </div>
         </div>
       </div>
