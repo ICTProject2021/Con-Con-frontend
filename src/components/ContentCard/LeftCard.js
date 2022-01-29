@@ -8,7 +8,7 @@ const Leftcard = ({ cn, user, title, startdate, profile, duedate }) => {
       <p>{user}</p>
       <h2>{title}</h2>
       <p>
-        {startdate}~{duedate}
+        {startdate.substr(0, 10)}~{duedate.substr(0, 10)}
       </p>
       <button className="part_but">자세히</button>
     </div>

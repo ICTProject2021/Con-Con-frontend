@@ -87,6 +87,8 @@ const Content = () => {
           <div className="HomeTemplate-content-right">
             <div className="HomeTemplate-content-right-top">
               <Profilebase nickname={nickname} cash={cash} profile={profile} />
+              <br></br>
+              <div className="advertise">advertise</div>
             </div>
           </div>
         </div>
