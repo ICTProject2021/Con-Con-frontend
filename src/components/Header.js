@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import SidebarItem from "./SidebarItem";
 import logo from "../img/logo.png";
 const Header = () => {
@@ -18,9 +18,11 @@ const Header = () => {
       <div className="NavBar">
         <div className="NavBar-wrap">
           <header className="NavBar-wrap-header">
-            <a className="NavBar-wrap-header-logo">
-              <img className="NavBar-wrap-header-logo-img" src={logo}></img>
-            </a>
+            <NavLink className="NavBar-wrap-header-logo" to="/">
+              <a>
+                <img className="NavBar-wrap-header-logo-img" src={logo}></img>
+              </a>
+            </NavLink>
           </header>
           <nav className="NavBar-wrap-nav">
             <ul className="NavBar-wrap-nav-wrap">
