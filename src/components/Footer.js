@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Logo from "../img/login_logo.svg";
 const Footer = () => {
   const thisYear = () => {
     const year = new Date().getFullYear();
@@ -6,7 +7,9 @@ const Footer = () => {
   };
   return (
     <div className="PageTemplate-footer">
-      <div className="Footer">concon</div>
+      <div className="Footer" style={{ color: "white" }}>
+        <img src={Logo} style={{ width: "150px", height: "150px" }} />
+      </div>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import SidebarItem from "./SidebarItem";
 import logo from "../img/logo.png";
+import { Button } from "react-bootstrap";
 const Header = () => {
   const logout = () => {
     alert("로그아웃 하시겠습니까?");
@@ -10,7 +11,6 @@ const Header = () => {
   };
   const menus = [
     { name: "홈", path: "/" },
-    { name: "프로필", path: "/profile" },
     { name: "정보", path: "/info" },
   ];
   return (
@@ -31,7 +31,7 @@ const Header = () => {
               })}
             </ul>
           </nav>
-          <button onClick={logout}>logout</button>
+          <Button onClick={logout}>logout</Button>
         </div>
       </div>
     </div>

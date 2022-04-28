@@ -80,7 +80,11 @@ const Conmkmodal = () => {
 
   return (
     <>
-      <Button variant="secondary" onClick={handleShow}>
+      <Button
+        style={{ marginLeft: "10px" }}
+        variant="secondary"
+        onClick={handleShow}
+      >
         대회 생성
       </Button>
       <Modal show={show} onHide={handleClose}>

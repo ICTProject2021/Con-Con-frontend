@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 const AuthForm = () => {
+  const Url = "http://10.80.162.36:3000";
   const [loginid, setLoginId] = useState("");
   const [loginpw, setLoginPw] = useState("");
   const [newAccount, setNewAccount] = useState(true);
@@ -28,15 +29,12 @@ const AuthForm = () => {
     e.preventDefault();
     if (newAccount) {
       axios
-        .post(
-          "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/signup",
-          {
-            id: loginid,
-            pw: loginpw,
-            phonenum: email,
-            nickname: nickname,
-          }
-        )
+        .post(`${Url}/signup`, {
+          id: loginid,
+          pw: loginpw,
+          phonenum: email,
+          nickname: nickname,
+        })
         //성공시 then 실행
         .then(function (response) {
           console.log(response);
@@ -56,13 +54,10 @@ const AuthForm = () => {
         });
     } else {
       axios
-        .post(
-          "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/signin",
-          {
-            id: loginid,
-            pw: loginpw,
-          }
-        )
+        .post(`${Url}/signin`, {
+          id: loginid,
+          pw: loginpw,
+        })
         //성공시 then 실행
         .then(function (response) {
           console.log(loginid);

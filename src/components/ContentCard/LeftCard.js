@@ -1,11 +1,14 @@
 import React from "react";
 import logo from "../../img/logo.png";
 const Leftcard = ({ cn, user, title, startdate, profile, duedate }) => {
-  const url = "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/";
+  const url = "http://10.80.162.36:3000/";
   return (
     <div className={cn}>
-      <img src={url + profile} style={{ height: "40px" }}></img>
-      <p>{user}</p>
+      <img
+        src={url + profile}
+        style={{ width: "30px", height: "40px", margin: "20px" }}
+      ></img>
+      <p>개최자:{user}</p>
       <h2>{title}</h2>
       <p>
         {startdate.substr(0, 10)}~{duedate.substr(0, 10)}

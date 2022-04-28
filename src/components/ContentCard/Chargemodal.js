@@ -3,6 +3,7 @@ import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 const Chargemodal = () => {
+  const Url = "http://10.80.162.36:3000";
   const moneyInput = useRef();
   const options = [
     {
@@ -32,6 +33,7 @@ const Chargemodal = () => {
   ];
   const [show, setShow] = useState(false);
   const [charge, setCharge] = useState("");
+  const isAdmin = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const onChange = (e) => {
@@ -46,7 +48,7 @@ const Chargemodal = () => {
     e.preventDefault();
     axios
       .put(
-        "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/charge",
+        `${Url}/charge`,
         {
           cash: charge,
         },
@@ -68,43 +70,46 @@ const Chargemodal = () => {
   };
   return (
     <>
-      <Button variant="warning" onClick={handleShow}>
+      <Button
+        variant="warning"
+        onClick={handleShow}
+        style={{ marginLeft: "10px" }}
+      >
         충전하기
       </Button>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>캐쉬 충전하기</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          충전할 금액을 입력해주세요
-          <form onSubmit={onSubmit} className="chargebut" onChange={onChange}>
-            <div>
-              <input
-                type="text"
-                name="charge"
-                value={charge}
-                onChange={onChange}
-                className="form-control"
-              ></input>
-            </div>
-            선택하기
-          </form>
-          <select name="language" className="form-control">
-            {options.map((option) => (
-              <option value={option.value}>{option.label}</option>
-            ))}
-          </select>
-        </Modal.Body>
+      {isAdmin ? (
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>캐쉬 충전하기</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>충전은 모바일에서 진행해주세요^^</Modal.Body>
 
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            닫기
-          </Button>
-          <Button variant="primary" onClick={onSubmit}>
-            충전하기
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              닫기
+            </Button>
+            <Button variant="primary" onClick={onSubmit}>
+              충전하기
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      ) : (
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>캐쉬 충전하기</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>충전할 금액을 입력해주세요</Modal.Body>
+
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              닫기
+            </Button>
+            <Button variant="primary" onClick={onSubmit}>
+              충전하기
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      )}
     </>
   );
 };

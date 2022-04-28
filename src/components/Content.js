@@ -3,18 +3,18 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Leftcard from "./ContentCard/LeftCard";
 import Profilebase from "./ContentCard/Profilebase";
+import logo from "../img/logo.png";
 const Content = () => {
   const [nickname, setNickname] = useState("");
   const [cash, setCash] = useState("");
   const [profile, setProfile] = useState("logo");
   const [datas, setData] = useState([]);
-  const url = "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000";
+  const url = "http://10.80.162.36:3000";
   const getContestData = async () => {
     await axios
-      .get(
-        "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/contest",
-        { headers: { Authorization: sessionStorage.getItem("token") } }
-      )
+      .get(`${url}/contest`, {
+        headers: { Authorization: sessionStorage.getItem("token") },
+      })
       //성공시 then 실행
       .then(function (response) {
         if (response) {
@@ -30,10 +30,9 @@ const Content = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/contest",
-          { headers: { Authorization: sessionStorage.getItem("token") } }
-        );
+        const response = await axios.get(`${url}/contest`, {
+          headers: { Authorization: sessionStorage.getItem("token") },
+        });
         if (response) {
           console.log(response.data.data);
           const basedata = response.data.data;
@@ -88,7 +87,12 @@ const Content = () => {
             <div className="HomeTemplate-content-right-top">
               <Profilebase nickname={nickname} cash={cash} profile={profile} />
               <br></br>
-              <div className="advertise">advertise</div>
+              <div
+                className="advertise"
+                style={{ textAlign: "center", lineHeight: "150px" }}
+              >
+                <img src={logo} style={{}} />
+              </div>
             </div>
           </div>
         </div>
