@@ -54,16 +54,12 @@ const Conmkmodal = () => {
       console.log(`${key}`);
     }
     axios
-      .post(
-        "http://ec2-18-191-238-179.us-east-2.compute.amazonaws.com:3000/contest",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: sessionStorage.getItem("token"),
-          },
-        }
-      )
+      .post(`${process.env.REACT_APP_API_URL}/contest`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: sessionStorage.getItem("token"),
+        },
+      })
       //성공시 then 실행
       .then(function (response) {
         console.log(response);

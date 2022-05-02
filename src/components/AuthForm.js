@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 const AuthForm = () => {
-  const Url = "http://10.80.162.36:3000";
+  const url = process.env.REACT_APP_API_URL;
+  console.log(url);
+  const Url = "http://10.80.162.49:3000";
   const [loginid, setLoginId] = useState("");
   const [loginpw, setLoginPw] = useState("");
   const [newAccount, setNewAccount] = useState(true);
@@ -29,7 +31,7 @@ const AuthForm = () => {
     e.preventDefault();
     if (newAccount) {
       axios
-        .post(`${Url}/signup`, {
+        .post(`${url}/signup`, {
           id: loginid,
           pw: loginpw,
           phonenum: email,
@@ -54,7 +56,7 @@ const AuthForm = () => {
         });
     } else {
       axios
-        .post(`${Url}/signin`, {
+        .post(`${url}/signin`, {
           id: loginid,
           pw: loginpw,
         })

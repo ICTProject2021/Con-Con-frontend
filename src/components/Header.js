@@ -11,7 +11,7 @@ const Header = () => {
   };
   const menus = [
     { name: "홈", path: "/" },
-    { name: "정보", path: "/info" },
+    { name: "Con-Con정보", path: "/Info" },
   ];
   return (
     <div className="PageTemplate-header">
