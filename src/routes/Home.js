@@ -1,15 +1,15 @@
 import React from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/Home/Header";
+import Footer from "../components/Home/footer/Footer";
 import "../Home.css";
-import Content from "../components/Content";
+import Content from "../components/Home/Content";
 const Home = () => {
   return (
-    <div className="PageTemplate">
+    <>
       <Header />
       <Content />
       <Footer />
-    </div>
+    </>
   );
 };
 export default Home;

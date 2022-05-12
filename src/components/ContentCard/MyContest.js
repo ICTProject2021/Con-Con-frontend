@@ -2,36 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-const Chargemodal = () => {
+const MyContest = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [res, setRes] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/profile/contest`, {
-        headers: { Authorization: sessionStorage.getItem("token") },
-      })
-      //성공시 then 실행
-      .then(function (response) {
-        setRes(response.data.data);
-        console.log(res);
-      })
-      //실패 시 catch 실행
-      .catch(function (error) {
-        alert("오류가 발생했습니다");
-        console.log(error);
-      });
-  }, []);
   return (
     <>
-      <Button
-        variant="warning"
-        onClick={handleShow}
-        style={{ marginLeft: "10px" }}
-      >
+      <div onClick={handleShow} style={{ marginLeft: "10px" }}>
         참가한대회조회
-      </Button>
+      </div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>내가 참가한 대회</Modal.Title>
@@ -70,4 +50,4 @@ const Chargemodal = () => {
     </>
   );
 };
-export default Chargemodal;
+export default MyContest;

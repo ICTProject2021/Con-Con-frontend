@@ -11,13 +11,12 @@ import Home from "../routes/Home";
 import Profile from "../routes/Profile";
 import Info from "../routes/Info";
 const AppRouter = ({ islog }) => {
-  console.log(islog);
   return (
     <BrowserRouter>
       <Switch>
         {islog ? (
           <>
-            <Route exact path="/">
+            <Route exact path="/home">
               <Home />
             </Route>
             <Route path="/info">

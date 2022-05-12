@@ -1,8 +1,9 @@
 import React from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import github from "../img/github.png";
-import { Height } from "@material-ui/icons";
+import Header from "../components/Home/Header";
+import Footer from "../components/Home/footer/Footer";
+import github from "../assets/github.png";
+import insta from "../assets/insta_icon.svg";
+
 const Info = () => {
   return (
     <>
@@ -32,17 +33,24 @@ const Info = () => {
                   <ul>
                     <li>
                       <h4>최승연</h4>
-                      <img
-                        src={github}
-                        style={{ width: "40px", height: "40px" }}
-                      ></img>
+                      <a href="https://github.com/sseung416" target="_blank">
+                        <img
+                          src={github}
+                          style={{ width: "40px", height: "40px" }}
+                        ></img>
+                      </a>
                     </li>
                     <li>
                       <h4>지민혁</h4>
-                      <img
-                        src={github}
-                        style={{ width: "40px", height: "40px" }}
-                      ></img>
+                      <a
+                        href="https://github.com/MinHyukJi1226"
+                        target="_blank"
+                      >
+                        <img
+                          src={github}
+                          style={{ width: "40px", height: "40px" }}
+                        ></img>
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -51,10 +59,12 @@ const Info = () => {
                   <ul>
                     <li>
                       <h4>손민균</h4>
-                      <img
-                        src={github}
-                        style={{ width: "40px", height: "40px" }}
-                      ></img>
+                      <a href="https://github.com/Eyjafjallaa" target="_blank">
+                        <img
+                          src={github}
+                          style={{ width: "40px", height: "40px" }}
+                        ></img>
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -63,10 +73,25 @@ const Info = () => {
                   <ul>
                     <li>
                       <h4>강석현</h4>
-                      <img
-                        src={github}
-                        style={{ width: "40px", height: "40px" }}
-                      ></img>
+                      <a href="https://github.com/tjrgusdl41" target="_blank">
+                        <img
+                          src={github}
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            marginRight: "20px",
+                          }}
+                        ></img>
+                      </a>
+                      <a
+                        href="https://www.instagram.com/tjrgusdl41/"
+                        target="_blank"
+                      >
+                        <img
+                          src={insta}
+                          style={{ width: "40px", height: "40px" }}
+                        ></img>
+                      </a>
                     </li>
                   </ul>
                 </div>

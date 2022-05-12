@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Logo from "../img/login_logo.svg";
+import Logo from "../../../assets/login_logo.svg";
 const Footer = () => {
   const thisYear = () => {
     const year = new Date().getFullYear();

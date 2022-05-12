@@ -1,10 +1,7 @@
-//로그인 폼
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 const AuthForm = () => {
   const url = process.env.REACT_APP_API_URL;
-  console.log(url);
-  const Url = "http://10.80.162.49:3000";
   const [loginid, setLoginId] = useState("");
   const [loginpw, setLoginPw] = useState("");
   const [newAccount, setNewAccount] = useState(true);
@@ -31,7 +28,7 @@ const AuthForm = () => {
     e.preventDefault();
     if (newAccount) {
       axios
-        .post(`${url}/signup`, {
+        .post(`${url}signup`, {
           id: loginid,
           pw: loginpw,
           phonenum: email,
@@ -56,7 +53,7 @@ const AuthForm = () => {
         });
     } else {
       axios
-        .post(`${url}/signin`, {
+        .post(`${url}signin`, {
           id: loginid,
           pw: loginpw,
         })
@@ -70,14 +67,14 @@ const AuthForm = () => {
           if (ok == "로그인 성공") {
             sessionStorage.setItem("token", token);
             alert("로그인 성공");
-            window.location.replace("/");
+            window.location.replace("/home");
           } else {
             alert("아이디와 비밀번호가 일치하지 않습니다.");
           }
         })
         //실패 시 catch 실행
         .catch(function (error) {
-          alert("아이디와 비밀번호가 일치하지 않습니다");
+          alert("아이디와 비밀번호가 일치하지 않습니다", error);
           console.log(error);
         });
     }
