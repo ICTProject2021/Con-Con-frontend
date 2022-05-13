@@ -1,9 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import SidebarItem from "../../SidebarItem";
 // import logo from "../img/logo.png";
 import HeaderLogo from "../../../assets/headerlogo.svg";
-import { Button } from "react-bootstrap";
 import * as S from "./index.style";
 const Header = () => {
   const menus = [

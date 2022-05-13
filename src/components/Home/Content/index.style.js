@@ -64,3 +64,8 @@ export const Button = styled.div`
   bottom: 0;
   right: 0;
 `;
+export const Input = styled.input`
+  border: none;
+  font-size: 2rem;
+  border-bottom: 1px solid #000;
+`;

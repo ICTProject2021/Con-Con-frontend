@@ -29,6 +29,7 @@ const Content = () => {
     };
     fetchData();
   }, []);
+
   useEffect(() => {
     axios
       .get(url + "profile", {
@@ -46,13 +47,12 @@ const Content = () => {
         console.log(error);
       });
   }, []);
-
   return (
     <S.Wrapper>
       <S.Header>
         <S.ContestList>
-          <a style={{ color: "skyblue" }}>대회 목록</a> &emsp;
-          <Input placeholder="대회를 검색하세요" />
+          <a style={{ color: "skyblue" }}>대회 목록</a>
+          <S.Input placeholder="대회를 검색하세요" />
         </S.ContestList>
       </S.Header>
       <S.Content>
